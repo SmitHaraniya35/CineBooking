@@ -101,7 +101,7 @@ import { useAuth } from "../context/AuthContext"
 
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate()
-  const { user } = useAuth()
+  const { user, isLogin } = useAuth()
 
   const handleBookNow = async () => {
     try {
@@ -166,7 +166,7 @@ const MovieCard = ({ movie }) => {
           >
             View Details
           </Link>
-          {user && user.role === "admin" ? (
+          {/* {isLogin && user && user.role === "admin" ? (
             <button
               onClick={handleBookNow}
               className="flex-1 px-2 sm:px-3 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all transform hover:scale-105 font-medium text-xs sm:text-sm shadow-lg"
@@ -180,7 +180,13 @@ const MovieCard = ({ movie }) => {
             >
               Book Now
             </button>
-          )}
+          )} */}
+          {isLogin && <button
+              onClick={handleBookNow}
+              className="flex-1 px-2 sm:px-3 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg hover:from-red-700 hover:to-red-800 transition-all transform hover:scale-105 font-medium text-xs sm:text-sm shadow-lg"
+            >
+              { user && user.role == "admin" ? "View Shows" : "Book Now"}
+            </button>}
         </div>
       </div>
 

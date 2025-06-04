@@ -273,12 +273,20 @@ const Navbar = () => {
               </Link>
 
               {user && user.role !== "admin" && (
-                <Link
-                  to="/my-bookings"
-                  className="text-gray-300 hover:text-white hover:bg-slate-700 px-2 lg:px-3 py-2 rounded-md text-xs lg:text-sm font-medium transition-all duration-200 ease-in-out transform hover:scale-105"
-                >
-                  Bookings
-                </Link>
+                <>
+                  <Link
+                    to="/my-bookings"
+                    className="text-gray-300 hover:text-white hover:bg-slate-700 px-2 lg:px-3 py-2 rounded-md text-xs lg:text-sm font-medium transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    Bookings
+                  </Link>
+                  <Link
+                    to="/update-profile"
+                    className="text-gray-300 hover:text-white hover:bg-slate-700 px-2 lg:px-3 py-2 rounded-md text-xs lg:text-sm font-medium transition-all duration-200 ease-in-out transform hover:scale-105"
+                  >
+                    Profile
+                  </Link>
+                </>
               )}
 
               {user && user.role === "admin" && (
@@ -377,6 +385,7 @@ const Navbar = () => {
           </Link>
 
           {user && user.role !== "admin" && (
+            <>
             <Link
               to="/my-bookings"
               onClick={closeMobileMenu}
@@ -394,6 +403,24 @@ const Navbar = () => {
                 My Bookings
               </span>
             </Link>
+            <Link
+            to="/update-profile"
+            onClick={closeMobileMenu}
+            className="text-gray-300 hover:text-white hover:bg-slate-700 block px-3 py-2 sm:py-3 rounded-md text-sm sm:text-base font-medium transition-colors duration-200"
+          >
+            <span className="flex items-center">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
+              Profile
+            </span>
+          </Link>
+            </>
           )}
 
           {user && user.role === "admin" && (

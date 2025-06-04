@@ -12,7 +12,7 @@ exports.registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, password: hashedPassword, phone });
 
-    res.status(201).json({ msg: "User register successfully", user: {id: user._id, name: user.name, email: user.email, phone: user.phone} });
+    res.status(201).json({ msg: "User register successfully", user: { id: user._id, name: user.name, email: user.email, phone: user.phone } });
   } catch (err) {
     res.status(500).json({ msg: err.message });
   }
@@ -42,10 +42,10 @@ exports.loginUser = async (req, res) => {
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     });
 
-     res.status(200).json({ user: user, msg: "User login successful" });
+    res.status(200).json({ user: user, msg: "User login successful" });
   } catch (err) {
     console.error("Login Error:", err);
-    res.status(500).json({ msg:"Server error. Please try again later. "});
+    res.status(500).json({ msg: "Server error. Please try again later. " });
   }
 };
 
@@ -82,5 +82,25 @@ exports.logout = (req, res) => {
   } catch (err) {
     console.error("Logout error:", err);
     res.status(500).json({ msg: "Logout failed. Please try again." });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  const userId = req.params.id;
+  const { name, phone, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { name, phone, password: hashedPassword },
+      { new: true }
+    );
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+
+    res.status(200).json({ message: 'Profile updated successfully', user });
+  } catch (error) {
+    res.status(500).json({ message: 'Update failed', error });
   }
 };

@@ -15,6 +15,7 @@ import ViewTheaters from "./pages/ViewTheaters"
 import AddOrUpdateMovie from "./pages/AddOrUpdateMovie"
 import AddOrUpdateShowtime from "./pages/AddOrUpdateShowtime"
 import ViewBookings from "./pages/ViewBookings"
+import UserProfile from "./pages/UserProfile"
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       <div className="flex flex-col min-h-screen bg-gray-50">
         <Navbar />
 
-        <main className="flex-grow pt-16">
+        <main className="flex-grow pt-14 sm:pt-16">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<Signup />} />
@@ -41,6 +42,7 @@ function App() {
             <Route path="/add-show/:movieId/:cinemaId" element={<AddOrUpdateShowtime />} />
             <Route path="/cinemas" element={<CinemaList />} />
             <Route path="/my-bookings" element={<ViewBookings />} />
+            <Route path="/update-profile" element={<UserProfile />} />
           </Routes>
         </main>
 

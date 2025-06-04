@@ -46,4 +46,12 @@ export const logout = async () => {
   }
 };
 
+export const updateUser = async (id, data) => {
+  try {
+    const res = await axios.put(`${API_URL}/${id}`, data);
+    return res.data;
+  } catch (err) {
+    throw err.response.data;
+  }
+};
 

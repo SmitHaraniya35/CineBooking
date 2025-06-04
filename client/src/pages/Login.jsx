@@ -10,17 +10,20 @@ const Login = () => {
   const [step, setStep] = useState(1)
   const navigate = useNavigate()
   const { setUser, setIsLogin } = useAuth()
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setError("")
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setError("")
 
     if (step === 1) {
       if (!formData.email) {
-        alert("Email is required.")
+        setError("Email is required.")
         return
       }
       setStep(2)
@@ -28,7 +31,7 @@ const Login = () => {
     }
 
     if (!formData.email || !formData.password) {
-      alert("Email and password are required.")
+      setError("Email and password are required.")
       return
     }
 
@@ -41,7 +44,7 @@ const Login = () => {
       navigate("/")
     } catch (err) {
       const message = err.response?.data?.msg || "Login failed. Please check your credentials."
-      alert(message)
+      setError(message)
     }
   }
 
@@ -75,6 +78,22 @@ const Login = () => {
         <div className="relative z-40 text-white flex flex-col items-center justify-center px-6 py-12 h-full">
           <div className="w-full max-w-md">
             <h1 className="text-red-600 text-3xl font-bold mb-8">🎬 CineBooking</h1>
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center">
+                  <svg className="w-5 h-5 text-red-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <p className="text-red-300 text-sm">{error}</p>
+                </div>
+              </div>
+            )}
 
             <h2 className="text-3xl font-bold mb-2">Welcome Back</h2>
             <p className="text-gray-400 mb-8">Enter your Details</p>
