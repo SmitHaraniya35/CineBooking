@@ -73,8 +73,10 @@ exports.logout = (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      sameSite: "Strict",
+      sameSite: "Node",
       secure: true,
+      domain: process.env.VITE_FRONTEND_URL,
+      path:"/"
     });
     // res.clearCookie("token");
 
