@@ -37,9 +37,9 @@ exports.loginUser = async (req, res) => {
     // ✅ Set cookie 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false, // Only HTTPS in prod
-      sameSite: "Lax",
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+      secure: true, // Only HTTPS in prod
+      sameSite: "None",
+      maxAge: 24 * 60 * 60 * 1000, // 30 days
     });
 
     res.status(200).json({ user: user, msg: "User login successful" });
