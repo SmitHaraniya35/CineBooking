@@ -71,12 +71,12 @@ exports.getMe = async (req, res) => {
 // Logout
 exports.logout = (req, res) => {
   try {
-    // res.clearCookie("token", {
-    //   httpOnly: true,
-    //   sameSite: "Strict",
-    //   secure: process.env.NODE_ENV === "production",
-    // });
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "Strict",
+      secure: true,
+    });
+    // res.clearCookie("token");
 
     res.status(200).json({ msg: "Logged out successfully." });
   } catch (err) {
