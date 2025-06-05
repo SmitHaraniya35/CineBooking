@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api"; // adjust as needed
+// const BASE_URL = "http://localhost:5000/api"; // adjust as needed
+const BASE_URL = import.meta.env.VITE_BACKEND_API_URL
 
 export const getTheaterById = async (theaterId) => {
   try {
-    const res = await axios.get(`${BASE_URL}/theaters/${theaterId}`, { withCredentials: true });
+    const res = await axios.get(`${BASE_URL}/api/theaters/${theaterId}`, { withCredentials: true });
     return res.data;
   } catch (err) {
     console.error("Fetch theater error:", err.response?.data?.msg || err.message);
@@ -14,7 +15,7 @@ export const getTheaterById = async (theaterId) => {
 
 export const getBookedSeats = async (showtimeId, selectedDate) => {
   try {
-    const res = await axios.get(`${BASE_URL}/bookings/booked-seats/${showtimeId}/date/${selectedDate}`, { withCredentials: true });
+    const res = await axios.get(`${BASE_URL}/api/bookings/booked-seats/${showtimeId}/date/${selectedDate}`, { withCredentials: true });
     return res.data;
   } catch (err) {
     console.error("Get booked seats error:", err.response?.data?.msg || err.message);
@@ -24,7 +25,7 @@ export const getBookedSeats = async (showtimeId, selectedDate) => {
 
 export const createBooking = async (bookingData) => {
   try {
-    const res = await axios.post(`${BASE_URL}/bookings`, bookingData, { withCredentials: true });
+    const res = await axios.post(`${BASE_URL}/api/bookings`, bookingData, { withCredentials: true });
     return res.data;
   } catch (err) {
     console.error("Create booking error:", err.response?.data?.msg || err.message);
@@ -35,7 +36,7 @@ export const createBooking = async (bookingData) => {
 export const getUserBookings = async (id) => {
   console.log(id)
   try {
-    const res = await axios.get(`${BASE_URL}/bookings/${id}`, { withCredentials: true });
+    const res = await axios.get(`${BASE_URL}/api/bookings/${id}`, { withCredentials: true });
     return res.data;
   } catch (err) {
     console.error("Fetch user booking error:", err.response?.data?.msg || err.message);

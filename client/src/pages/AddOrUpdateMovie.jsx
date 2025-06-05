@@ -785,7 +785,7 @@ const AddOrUpdateMovie = () => {
         const formData = new FormData()
         formData.append("photo", file)
 
-        const response = await axios.post("http://localhost:5000/api/upload", formData)
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/api/upload`, formData)
         const url = response.data.imageUrl
 
         const updatedPhotos = [...photoUrls]

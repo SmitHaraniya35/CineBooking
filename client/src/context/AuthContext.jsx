@@ -1,7 +1,7 @@
 import { useContext, useState, createContext, useEffect } from "react";
 import axios from "axios"
 
-const API = axios.create({ baseURL: "http://localhost:5000/api" })
+const API = axios.create({ baseURL: import.meta.env.VITE_BACKEND_API_URL })
 
 const AuthContext = createContext()
 
@@ -12,7 +12,7 @@ export const AuthProvider = ({children}) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await API.get("/auth/me", { withCredentials: true });
+                const res = await API.get("/api/auth/me", { withCredentials: true });
                 console.log(res.data)
                 setUser(res.data);
                 setIsLogin(true)

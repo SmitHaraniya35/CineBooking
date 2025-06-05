@@ -1,10 +1,12 @@
 // src/services/showtimeService.js
 import axios from "axios";
-const API = "http://localhost:5000/api/showtimes"; // adjust if needed
+// const API = "http://localhost:5000/api/showtimes"; // adjust if needed
+
+const API = import.meta.env.VITE_BACKEND_API_URL
 
 export const getShowtimesByMovieId = async (movieId) => {
   try {
-    const res = await axios.get(`${API}/movie/${movieId}`, {
+    const res = await axios.get(`${API}/api/showtimes/movie/${movieId}`, {
       withCredentials: true,
     });
     return res.data;
@@ -16,7 +18,7 @@ export const getShowtimesByMovieId = async (movieId) => {
 
 export const getShowtimeById = async (showtimeId) => {
   try {
-    const res = await axios.get(`${API}/${showtimeId}`, {
+    const res = await axios.get(`${API}/api/showtimes/${showtimeId}`, {
       withCredentials: true,
     });
     return res.data;
@@ -28,7 +30,7 @@ export const getShowtimeById = async (showtimeId) => {
 
 export const getAllShowtimes = async () => {
   try {
-    const res = await axios.get("http://localhost:5000/api/showtimes", {
+    const res = await axios.get(`${API}/api/showtimes`, {
       withCredentials: true,
     });
     return res.data;
@@ -40,7 +42,7 @@ export const getAllShowtimes = async () => {
 
 export const addShowtime = async (showtimeData) => {
   try {
-    const res = await axios.post("http://localhost:5000/api/showtimes/addShow", showtimeData, {
+    const res = await axios.post(`${API}/api/showtimes/addShow`, showtimeData, {
       withCredentials: true,
     });
     return res.data;
@@ -52,7 +54,7 @@ export const addShowtime = async (showtimeData) => {
 
 export const updateShowtime = async (id, showtimeData) => {
   try {
-    const res = await axios.put(`http://localhost:5000/api/showtimes/${id}`, showtimeData, {
+    const res = await axios.put(`${API}/api/showtimes/${id}`, showtimeData, {
       withCredentials: true,
     });
     return res.data;
@@ -64,7 +66,7 @@ export const updateShowtime = async (id, showtimeData) => {
 
 export const deleteShowtime = async (id) => {
   try {
-    const res = await axios.delete(`http://localhost:5000/api/showtimes/${id}`, {
+    const res = await axios.delete(`${API}/api/showtimes/${id}`, {
       withCredentials: true,
     });
     return res.data;
