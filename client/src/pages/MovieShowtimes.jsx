@@ -398,7 +398,7 @@ const MovieShowtimes = () => {
               {movie?.photos[0] && (
                 <div className="flex-shrink-0">
                   <img
-                    src={`/images/${movie.photos[0]}` || "/placeholder.svg"}
+                    src={`${movie.photos[0]}` || "/placeholder.svg"}
                     alt={movie.title}
                     className="w-32 h-48 md:w-40 md:h-60 object-cover rounded-xl shadow-2xl"
                   />

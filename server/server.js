@@ -9,6 +9,7 @@ const bookingRoutes = require("./routes/bookingRoutes");
 const showtimeRoutes = require("./routes/showtimeRoutes");
 const cinemaRoutes = require("./routes/cinemaRoutes");
 const theaterRoutes = require("./routes/theaterRoutes");
+const uploadRoute = require("./routes/uploadRoute")
 const path = require("path")
 
 dotenv.config();
@@ -31,6 +32,7 @@ app.use("/api/bookings", bookingRoutes);
 app.use("/api/showtimes", showtimeRoutes);
 app.use("/api/cinemas", cinemaRoutes);
 app.use("/api/theaters", theaterRoutes);
+app.use('/api/upload', uploadRoute);
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI, {

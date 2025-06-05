@@ -69,7 +69,7 @@ const MovieDetails = () => {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
           style={{
-            backgroundImage: `url("/images/${movie.photos[1]}")`,
+            backgroundImage: `url("${movie.photos[1]}")`,
             backgroundPosition: "center 20%",
           }}
         ></div>

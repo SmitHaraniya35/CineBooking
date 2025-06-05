@@ -121,11 +121,11 @@ const MovieCard = ({ movie }) => {
       {/* Movie Poster - Responsive Height Container */}
       <div className="relative aspect-[2/3] overflow-hidden bg-gray-100">
         <img
-          src={`/images/${movie.photos[0]}` || "/placeholder.svg?height=400&width=300"}
+          src={`${movie.photos[0]}` || "/placeholder.svg?height=400&width=300"}
           alt={movie.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
           onError={(e) => {
-            e.target.src = "/placeholder.svg?height=400&width=300"
+            e.target.src = "/error.svg?height=400&width=300"
           }}
         />
 
