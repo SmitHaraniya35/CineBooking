@@ -793,6 +793,7 @@ const AddOrUpdateMovie = () => {
         setPhotoUrls(updatedPhotos)
       } catch (error) {
         console.error("Upload failed", error)
+        setError("Upload Failed")
       }
     }
 
@@ -806,7 +807,7 @@ const AddOrUpdateMovie = () => {
 
     return (
       <div className="space-y-3">
-        <label className="block text-sm font-medium text-gray-700 flex items-center">
+        <label className="block text-sm font-medium text-gray-700 items-center">
           <svg className="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -817,57 +818,87 @@ const AddOrUpdateMovie = () => {
           </svg>
           Photos
         </label>
-        <div className="space-y-2">
+        <div className="space-y-4">
           {photoUrls.map((url, index) => (
-            <div key={index} className="space-y-2">
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={url}
-                  readOnly
-                  placeholder="Uploaded image URL"
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                />
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => handlePhotoChange(index, e.target.files[0])}
-                  className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
-                />
-                <button
-                  type="button"
-                  onClick={() => handleRemovePhoto(index)}
-                  className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                  title="Remove Photo"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </button>
-              </div>
-              {url && (
-                <div className="ml-2">
-                  <img
-                    src={url || "/placeholder.svg"}
-                    alt="Preview"
-                    className="w-24 h-24 object-cover rounded-lg border border-gray-200 shadow-sm"
+            <div key={index} className="space-y-3 p-4 border border-gray-200 rounded-lg bg-gray-50">
+              {/* Mobile: Stack vertically, Desktop: Side by side */}
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3">
+                {/* URL Input - Full width on mobile, flex-1 on desktop */}
+                <div className="flex-1 space-y-2">
+                  <label className="block text-xs font-medium text-gray-600 sm:hidden">Image URL</label>
+                  <input
+                    type="text"
+                    value={url}
+                    readOnly
+                    placeholder="Uploaded image URL"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
+                </div>
+
+                {/* File Input and Remove Button Container */}
+                <div className="flex flex-col sm:flex-row gap-2 sm:items-start">
+                  {/* File Input */}
+                  <div className="space-y-2">
+                    <label className="block text-xs font-medium text-gray-600 sm:hidden">Choose File</label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handlePhotoChange(index, e.target.files[0])}
+                      className="w-full sm:w-auto px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 
+                             file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-blue-50 file:text-blue-600 
+                             hover:file:bg-blue-100 file:cursor-pointer cursor-pointer"
+                    />
+                  </div>
+
+                  {/* Remove Button */}
+                  <button
+                    type="button"
+                    onClick={() => handleRemovePhoto(index)}
+                    className="flex items-center justify-center p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200 
+                           sm:mt-0 self-start"
+                    title="Remove Photo"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                    <span className="ml-1 text-sm sm:hidden">Remove</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Image Preview - Responsive sizing */}
+              {url && (
+                <div className="flex justify-center sm:justify-start">
+                  <div className="relative">
+                    <img
+                      src={url || "/placeholder.svg"}
+                      alt="Preview"
+                      className="w-32 h-32 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-cover rounded-lg border border-gray-200 shadow-sm"
+                    />
+                    {/* Optional: Add a loading state or error handling */}
+                    <div
+                      className="absolute inset-0 bg-gray-200 rounded-lg animate-pulse hidden"
+                      id={`loading-${index}`}
+                    ></div>
+                  </div>
                 </div>
               )}
             </div>
           ))}
         </div>
+
+        {/* Add Photo Button - Responsive */}
         <button
           type="button"
           onClick={handleAddPhoto}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200"
+          className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200"
         >
-          <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
           Add New Photo
@@ -893,7 +924,7 @@ const AddOrUpdateMovie = () => {
         {/* Back button */}
         <div className="mb-6">
           <button
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/")}
             className="inline-flex items-center text-sm font-medium text-purple-600 hover:text-purple-800 transition-colors duration-200"
           >
             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

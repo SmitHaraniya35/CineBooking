@@ -4,7 +4,6 @@ const { getAllMovies, addMovie, updateMovie, deleteMovie, getMovieById, upload, 
 const protect = require("../middlewares/authMiddleware");
 
 router.get("/", getAllMovies);
-router.post("/upload", upload, uploadPhoto);
 router.get("/:movieId", getMovieById)
 router.post("/addMovie", addMovie);
 router.put("/:id", protect, updateMovie);

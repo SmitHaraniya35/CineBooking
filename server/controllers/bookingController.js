@@ -44,16 +44,6 @@ exports.getBookedSeats = async (req, res) => {
 };
 
 exports.getUserBookings = async (req, res) => {
-  // try {
-  //   const userId = new mongoose.Types.ObjectId(req.params.userId)
-  //   if (!userId) return res.status(400).json({ msg: "User ID is required." });
-
-  //   const bookings = await Booking.find({userId}).populate("showtimeId");
-  //   res.json(bookings);
-  // } catch (err) {
-  //   console.error("Get user bookings error:", err);
-  //   res.status(500).json({ msg: "Failed to fetch user bookings." });
-  // }
 
   try {
     const bookings = await Booking.find({ userId: req.params.userId })

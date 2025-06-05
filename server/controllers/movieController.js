@@ -59,32 +59,3 @@ exports.deleteMovie = async (req, res) => {
   }
 };
 
-
-// controllers/movieController.js
-const path = require("path");
-const multer = require("multer");
-
-// Setup multer storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../../client/public/images"));
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage });
-
-// Export upload middleware to use in routes
-exports.upload = upload.single("photo");
-
-// Upload handler
-exports.uploadPhoto = (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ error: "No file uploaded" });
-  }
-  const url = `/images/${req.file.filename}`;
-  res.status(200).json({ url });
-};
-

@@ -85,6 +85,7 @@ exports.logout = (req, res) => {
   }
 };
 
+// Update user
 exports.updateUser = async (req, res) => {
   const userId = req.params.id;
   const { name, phone, password } = req.body;
