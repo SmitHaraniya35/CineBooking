@@ -75,7 +75,6 @@ exports.logout = (req, res) => {
       httpOnly: true,
       sameSite: "None",
       secure: true,
-      domain: process.env.VITE_FRONTEND_DOMAIN,
       path:"/"
     });
     // res.clearCookie("token");
