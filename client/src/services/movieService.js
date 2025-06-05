@@ -17,7 +17,7 @@ export const getAllMovies = async () => {
 
 export const getMovieById = async (id) => {
   try {
-    const res = await axios.get(`${API}/api/${id}`);
+    const res = await axios.get(`${API}/api/movies/${id}`);
     return res.data;
   } catch (error) {
     console.error("Get movie by ID error:", error.response?.data?.msg || error.message);
@@ -27,7 +27,7 @@ export const getMovieById = async (id) => {
 
 export const addMovie = async (movieData) => {
   try {
-    const res = await axios.post(`${API}/api/addMovie`, movieData);
+    const res = await axios.post(`${API}/api/movies/addMovie`, movieData);
     return res.data;
   } catch (error) {
     console.error("Add movie error:", error.response?.data?.msg || error.message);
@@ -37,7 +37,7 @@ export const addMovie = async (movieData) => {
 
 export const updateMovie = async (id, movieData) => {
   try {
-    const res = await axios.put(`${API}/api/${id}`, movieData, { withCredentials: true });
+    const res = await axios.put(`${API}/api/movies/${id}`, movieData, { withCredentials: true });
     return res.data;
   } catch (error) {
     console.error("Update movie error:", error.response?.data?.msg || error.message);
@@ -47,7 +47,7 @@ export const updateMovie = async (id, movieData) => {
 
 export const deleteMovie = async (id) => {
   try {
-    const res = await axios.delete(`${API}/api/${id}`,{ withCredentials: true });
+    const res = await axios.delete(`${API}/api/movies/${id}`,{ withCredentials: true });
     return res.data;
   } catch (error) {
     console.error("Delete movie error:", error.response?.data?.msg || error.message);
