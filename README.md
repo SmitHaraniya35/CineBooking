@@ -4,8 +4,7 @@ A full-stack Movie Ticket Booking Web App built with the MERN stack (MongoDB, Ex
 
 ## 🌐 Live Demo
 
-- **Frontend (Vercel)**: [https://your-frontend.vercel.app](https://your-frontend.vercel.app)
-- **Backend (Render)**: [https://your-backend.onrender.com](https://your-backend.onrender.com)
+- 
 
 ---
 
@@ -40,13 +39,26 @@ A full-stack Movie Ticket Booking Web App built with the MERN stack (MongoDB, Ex
 
 ## 🧱 Tech Stack
 
-| Layer      | Technology           |
-|------------|----------------------|
-| Frontend   | React.js, Tailwind CSS or Bootstrap |
-| Backend    | Node.js, Express.js  |
-| Database   | MongoDB + Mongoose   |
-| Auth       | JWT (JSON Web Token) |
-| Deployment | Vercel (frontend), Render (backend) |
+| Layer        | Technology                       |
+|--------------|----------------------------------|
+| Frontend     | React (Vite) + Tailwind CSS       |
+| Backend      | Node.js + Express.js              |
+| Database     | MongoDB (Mongoose)                |
+| Auth         | JWT (JSON Web Token)              |
+| Image Upload | Cloudinary                        |
+| Deployment   | Vercel (Frontend), Render (Backend) |
 
 ---
+
+## 🚀 How to Run the Project
+
+### 1. Clone the Repository
+```
+-git clone https://github.com/your-username/cinebooking.git
+-cd cinebooking
+
+### 2. 
+cd server
+npm install
+
 
