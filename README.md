@@ -4,7 +4,7 @@ A full-stack Movie Ticket Booking Web App built with the MERN stack (MongoDB, Ex
 
 ## 🌐 Live Demo
 
-- 
+🔗 **Live Demo:** [Click here to try CineBooking](https://cine-booking-s8c6.vercel.app)
 
 ---
 
@@ -23,7 +23,7 @@ A full-stack Movie Ticket Booking Web App built with the MERN stack (MongoDB, Ex
 - Confirm booking and mark seats as reserved
 - View booked tickets
 - Download tickets as PDF
-- View ticket details (movie, theater, time, seat numbers, QR code, etc.)
+- View ticket details (movie, cinema, location, screen(theater), time, seat numbers, QR code, etc.)
 
 ### 🛠️ Admin Features
 
@@ -54,11 +54,41 @@ A full-stack Movie Ticket Booking Web App built with the MERN stack (MongoDB, Ex
 
 ### 1. Clone the Repository
 ```
--git clone https://github.com/your-username/cinebooking.git
--cd cinebooking
+git clone https://github.com/SmitHaraniya35/cinebooking.git
+cd cinebooking
+```
 
-### 2. 
+### 2. Setup the Backend
+```
 cd server
 npm install
+```
+-Create a .env file in the server directory and add:
+```
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
 
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 
+VITE_FRONTEND_URL=https://your-frontend.vercel.app ( your locahost url of frontend )
+```
+-Start the backend server:
+```
+node server.js or npm start
+```
+
+### 3. Setup the Frontend
+```
+cd client
+npm install
+```
+-Create a .env file in the server directory and add:
+```
+VITE_BACKEND_API_URL=https://your-backend.onrender.com
+```
+-Start the frontend server:
+```
+npm run dev
+```
