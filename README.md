@@ -63,7 +63,7 @@ cd cinebooking
 cd server
 npm install
 ```
--Create a .env file in the server directory and add:
+- Create a .env file in the server directory and add:
 ```
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
@@ -74,7 +74,7 @@ CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 
 VITE_FRONTEND_URL=https://your-frontend.vercel.app ( your locahost url of frontend )
 ```
--Start the backend server:
+- Start the backend server:
 ```
 node server.js or npm start
 ```
@@ -84,11 +84,11 @@ node server.js or npm start
 cd client
 npm install
 ```
--Create a .env file in the server directory and add:
+- Create a .env file in the server directory and add:
 ```
 VITE_BACKEND_API_URL=https://your-backend.onrender.com
 ```
--Start the frontend server:
+- Start the frontend server:
 ```
 npm run dev
 ```
